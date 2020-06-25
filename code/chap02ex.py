@@ -21,7 +21,15 @@ def Mode(hist):
 
     returns: value from Hist
     """
-    return 0
+    p, x = max([(p, x) for x, p in hist.Items()])
+    return x
+
+    # list comprehension above equivalent to: 
+    # mylist = []
+    # for x, p in hist.Items():
+    #    mylist.append((p, x))
+    # (p, x) = max(mylist)
+    # return x
 
 
 def AllModes(hist):
@@ -31,7 +39,10 @@ def AllModes(hist):
 
     returns: iterator of value-freq pairs
     """
-    return []
+    return sorted(hist.Items(), key=itemgetter(1), reverse=True)
+    
+    # sorted() has key parameter which selects what to sort by before sorting. 
+    # item(1) is frequency. reverse=True means sort in descending order, per question.
 
 
 def main(script):
